@@ -3,6 +3,7 @@ package config
 import (
 	"context"
 	"fmt"
+	"jabbah/types"
 	"log"
 	"os"
 
@@ -15,10 +16,10 @@ func GetRedisClient() *redis.Client {
 
 	environment := os.Getenv("ENVIRONMENT")
 	if environment == "" {
-		environment = "development"
+		environment = string(types.Development)
 	}
 
-	if environment == "development" {
+	if environment == string(types.Production) {
 		return getRedisClientDevelopment()
 	}
 
