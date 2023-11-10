@@ -15,15 +15,15 @@ func GetRedisClient() *redis.Client {
 	LoadEnviroment()
 
 	environment := os.Getenv("ENVIRONMENT")
-	if environment == "" {
-		environment = string(types.Development)
-	}
+
+	print("Environment: " + environment + "\n")
+	print("Environment: " + string(types.Production) + "\n")
 
 	if environment == string(types.Production) {
-		return getRedisClientDevelopment()
+		return getRedisClientProduction()
 	}
 
-	return getRedisClientProduction()
+	return getRedisClientDevelopment()
 }
 
 func getRedisClientDevelopment() *redis.Client {
